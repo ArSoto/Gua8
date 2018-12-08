@@ -38,6 +38,53 @@ void Insercion::directa() {
 
 }
 
+void Insercion::binaria() {
+
+    int aux;
+    int izq;
+    int der;
+    int m;
+    int j;
+
+    for (int i = 1; i < max ; ++i) {
+        aux = listaBinaria[i];
+        izq = 1;
+        der = i-1;
+
+        while(izq <= der){
+            m = (izq + der) /2;
+
+            if(aux <= listaBinaria[m]){
+                der = m-1;
+            } else{
+                izq = m+1;
+            }
+
+        }
+
+        j = i-1;
+
+        while (j>=izq){
+            listaBinaria[j + 1] = listaBinaria[j];
+            j = j-1;
+        }
+
+        listaBinaria[izq] = aux;
+
+
+    }
+
+
+    }
+
+int *Insercion::getListaBinaria() {
+
+
+
+    return listaBinaria;
+}
 int *Insercion::getListaDirecta() {
     return listaDirecta;
 }
+
+
