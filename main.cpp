@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cstdlib>
-#include "Burbuja.h"
-#include "Insercion.h"
+#include "Orden.h"
 
 using  namespace std;
+
 
 
 int main() {
@@ -20,38 +20,8 @@ int main() {
 
     }
 
-    cout << endl;
-
-    Burbuja borbuja(lista ,n);
-
-    borbuja.BorbujaMayor();
-    borbuja.BorbujaMenor();
-
-    Insercion insercion(lista, n);
-
-    insercion.directa();
-
-
-    int *directa= insercion.getListaDirecta();
-
-    for (int j = 0; j <n ; ++j) {
-        cout<< directa[j] << " ";
-
-    }
-
-    cout << endl<< "dd"<< endl;
-    int *binaria= insercion.getListaBinaria();
-
-    for (int k = 0; k < n ; ++k) {
-        cout << binaria[k] << " ";
-
-    }
-
-    cout << endl;
-
-
-
-
+    Orden algoritmos(lista, n);
+    algoritmos.ordenarListas();
 
 
 
