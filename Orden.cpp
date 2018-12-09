@@ -1,4 +1,10 @@
 #include "Orden.h"
+#include <time.h>
+#include <ctime>
+
+/**
+ * Constructor
+ * */
 
 Orden::Orden(int *lista, int n) {
 
@@ -13,21 +19,52 @@ Orden::Orden(int *lista, int n) {
     max = n;
 
 
-
 }
+
+/**
+ * Ejecuta los algoritmos de ordenamiento  y mide el tiempo de proceso
+ * de cada uno de ellos.
+ */
 
 void Orden::ordenarListas() {
 
-    selecion();
-    borbujaMayor();
+    clock_t medidorTiempo;
+
+
+    medidorTiempo = clock();
     borbujaMenor();
-    insercionBinaria();
+    tBorbujaMenor = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+
+    medidorTiempo = clock();
+    borbujaMayor();
+    tBorbujaMayor = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+
+    medidorTiempo = clock();
     insercionDirecta();
+    tInsercionDirecta = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+
+    medidorTiempo = clock();
+    insercionBinaria();
+    tInsercionBinaria = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+
+    medidorTiempo = clock();
+    selecion();
+    tSelecion = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+
+    medidorTiempo = clock();
     shell();
+    tShell = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+
+    medidorTiempo = clock();
     quicksort();
+    tQuitsort = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
 
 
 }
+
+/**
+ * Definicion los metodos de ordenamiento
+ * */
 
 void Orden::selecion() {
 
@@ -280,8 +317,9 @@ void Orden::auxQuicksort(int ini, int fin, int &pos) {
 }
 
 
-//#########################
-// Getters
+/**
+ * Getter de las listas ordenadas
+ * */
 
 int *Orden::getListaBinaria() {
 
@@ -304,6 +342,46 @@ int *Orden::getShell() {
 
 int *Orden::getQuicksort() {
     return listaQuicksort;
+}
+
+int *Orden::getBorbujaMayor() {
+    return listaBorbujaMayor;
+}
+
+int *Orden::getBorbujaMenor() {
+    return listaBorbujaMenor;
+}
+
+/**
+ *  Getters del tiempo de ejecucuin de los algoritmos
+ * */
+
+double Orden::getTBorbujaMayor() {
+    return tBorbujaMayor;
+}
+
+double Orden::getTBorbujaMenor() {
+    return tBorbujaMenor;
+}
+
+double Orden::getTSelecion() {
+    return tSelecion;
+}
+
+double Orden::getTInsercionB() {
+    return tInsercionBinaria;
+}
+
+double Orden::getTInsercionD() {
+    return tInsercionDirecta;
+}
+
+double Orden::getTShell() {
+    return tShell;
+}
+
+double Orden::getTQuitsort() {
+    return tQuitsort;
 }
 
 

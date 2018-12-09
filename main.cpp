@@ -8,7 +8,7 @@ using  namespace std;
 void imprimir(Orden);
 
 int main() {
-    int n = 8;
+    int n = 50000;
 
     int *lista;
     lista = new int [n];
@@ -18,32 +18,27 @@ int main() {
         cout << lista[i] << " ";
 
     }
+    cout << endl;
 
     Orden algoritmos(lista, n);
     algoritmos.ordenarListas();
 
-    int *listaq = algoritmos.getQuicksort();
-
-    for (int j = 0; j <n ; ++j) {
-
-        cout<< listaq[j] << " ";
-    }
-    cout<< endl;
-
-    int *a = algoritmos.getSeleccion();
-
-    for (int k = 0; k < n ; ++k) {
-        cout << a[k] << " " ;
-    }
-
+    imprimir(algoritmos);
 
     return 0;
 }
 
-void imprimir(Orden orden){
+void imprimir(Orden algoritmos){
 
-    cout << "------------------------------------" << endl;
-    cout << " Metodo     |Tiempo                 " << endl;
-    cout << "------------------------------------" << endl;
+    cout << "---------------------------------------" << endl;
+    cout << " Metodo            |Tiempo              " << endl;
+    cout << "---------------------------------------" << endl;
+    cout << " Borbuja Menor     |" << algoritmos.getTBorbujaMenor() << " milisegundos"<< endl;
+    cout << " Borbuja Mayor     |" << algoritmos.getTBorbujaMayor() << " milisegundos"<< endl;
+    cout << " Insercion         |" << algoritmos.getTInsercionD()   << " milisegundos"<< endl;
+    cout << " Insercion Binaria |" << algoritmos.getTInsercionB()   << " milisegundos"<< endl;
+    cout << " Seleccion         |" << algoritmos.getTSelecion()     << " milisegundos"<< endl;
+    cout << " Shell             |" << algoritmos.getTShell()        << " milisegundos"<< endl;
+    cout << " Quitsort          |" << algoritmos.getTQuitsort()     << " milisegundos"<< endl;
 
 }

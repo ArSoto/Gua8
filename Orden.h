@@ -5,8 +5,11 @@
 class Orden {
 
 private:
-    int max;
+    int max;    //Tamaño de la lista
 
+    /**
+     * Listas individuales para cada proceso de ordenamiento
+     * */
     int *listaBorbujaMayor;
     int *listaBorbujaMenor;
     int *listaInsercionDirecta;
@@ -15,6 +18,21 @@ private:
     int *listaShell;
     int *listaQuicksort;
 
+    /**
+     * Variables para almacenar el tiempo de ejecucion de los algoritmos
+     * */
+
+    double tBorbujaMayor;
+    double tBorbujaMenor;
+    double tInsercionDirecta;
+    double tInsercionBinaria;
+    double tSelecion;
+    double tShell;
+    double tQuitsort;
+
+    /**
+     * Declaracion de los metodos de ordenamiento
+     * */
 
     void selecion();
     void borbujaMayor();
@@ -26,20 +44,41 @@ private:
     void auxQuicksort(int, int, int& );
 
 public:
-    Orden(int *, int);      // Declaracion del Constructor
 
+    /** Declaracion del Constructor */
+    Orden(int *, int);
+
+    /** Declaracion metodo que ejecuta los algoritmos de ordenamiento  y mide el tiempo de proceso
+ * de cada uno de ellos.
+ */
     void ordenarListas();   // llama a todos los metodos de ordenamiento
 
 
-    /*
+    /**
      * Getters de las listas ordenadas
      * */
 
+    int *getBorbujaMayor();
+    int *getBorbujaMenor();
     int *getSeleccion();
     int *getListaDirecta();
     int *getListaBinaria();
     int *getShell();
     int *getQuicksort();
+
+
+    /**
+ *  Getters del tiempo de ejecucion de los algoritmos
+ * */
+
+    double getTBorbujaMayor();
+    double getTBorbujaMenor();
+    double getTSelecion();
+    double getTInsercionB();
+    double getTInsercionD();
+    double getTShell();
+    double getTQuitsort();
+
 
 
 
