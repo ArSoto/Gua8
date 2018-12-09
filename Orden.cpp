@@ -24,9 +24,7 @@ void Orden::ordenarListas() {
     insercionBinaria();
     insercionDirecta();
     shell();
-
-
-
+    quicksort();
 
 
 }
@@ -199,6 +197,89 @@ void Orden::shell() {
 
 }
 
+void Orden::quicksort() {
+
+    int tope;
+    int ini;
+    int fin;
+    int pos;
+    int pilaMenor[max];
+    int pilaMAyor[max];
+
+    tope = 1;
+    pilaMenor[tope] = 1;
+    pilaMAyor[tope] = max;
+
+    while (tope > 0){
+        ini = pilaMenor[tope];
+        fin = pilaMAyor[tope];
+        tope--;
+        auxQuicksort(ini, fin, pos);
+
+        if(ini < (pos -1)){
+            tope++;
+            pilaMenor[tope] = ini;
+            pilaMAyor[tope] = pos -1;
+
+        }
+        if(fin > (pos+1)){
+            tope++;
+            pilaMenor[tope] = pos + 1;
+            pilaMAyor[tope] = fin;
+        }
+
+    }
+}
+
+void Orden::auxQuicksort(int ini, int fin, int &pos) {
+
+    int izq;
+    int der;
+    int aux;
+    bool band;
+
+
+    izq = ini;
+    der = fin;
+    pos = ini;
+    band = true;
+
+    while(band){
+        while (listaQuicksort[pos] <= listaQuicksort[der] && pos != der){
+            der--;
+
+        }
+        if (pos == der){
+            band = false;
+
+        } else{
+            aux = listaQuicksort[pos];
+            listaQuicksort[pos] = listaQuicksort[der];
+            listaQuicksort[der] = aux;
+            pos = der;
+
+            while(listaQuicksort[pos] >= listaQuicksort[izq] && pos != izq){
+                izq ++;
+            }
+
+            if(pos == izq){
+                band = false;
+
+            } else{
+                aux = listaQuicksort[pos];
+
+                listaQuicksort[pos] = listaQuicksort[izq];
+                listaQuicksort[izq] = aux;
+
+                pos = izq;
+            }
+        }
+    }
+
+
+}
+
+
 //#########################
 // Getters
 
@@ -220,6 +301,13 @@ int *Orden::getSeleccion() {
 int *Orden::getShell() {
     return listaShell;
 }
+
+int *Orden::getQuicksort() {
+    return listaQuicksort;
+}
+
+
+
 
 
 
