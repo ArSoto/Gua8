@@ -1,6 +1,8 @@
 #ifndef ORDEN_H
 #define ORDEN_H
 
+#include <iostream>
+using  namespace std;
 
 class Orden {
 
@@ -28,7 +30,7 @@ private:
     double tInsercionBinaria;
     double tSelecion;
     double tShell;
-    double tQuitsort;
+    double tQuicksort;
 
     /**
      * Declaracion de los metodos de ordenamiento
@@ -58,11 +60,11 @@ public:
      * Getters de las listas ordenadas
      * */
 
-    int *getBorbujaMayor();
-    int *getBorbujaMenor();
-    int *getSeleccion();
-    int *getListaDirecta();
-    int *getListaBinaria();
+    int *getListaBorbujaMayor();
+    int *getListaBorbujaMenor();
+    int *getListaSeleccion();
+    int *getListaInsercionDirecta();
+    int *getListaInsercionBinaria();
     int *getShell();
     int *getQuicksort();
 
@@ -77,9 +79,7 @@ public:
     double getTInsercionB();
     double getTInsercionD();
     double getTShell();
-    double getTQuitsort();
-
-
+    double getTQuicksort();
 
 
 };

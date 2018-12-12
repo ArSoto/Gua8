@@ -29,35 +29,37 @@ Orden::Orden(int *lista, int n) {
 void Orden::ordenarListas() {
 
     clock_t medidorTiempo;
+    cout << "Quicksort... "<< endl;
+    medidorTiempo = clock();
+    quicksort();
+    tQuicksort = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC*1000;
 
 
     medidorTiempo = clock();
     borbujaMenor();
-    tBorbujaMenor = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+    tBorbujaMenor = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC * 1000;
 
     medidorTiempo = clock();
     borbujaMayor();
-    tBorbujaMayor = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+    tBorbujaMayor = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC *1000;
 
     medidorTiempo = clock();
     insercionDirecta();
-    tInsercionDirecta = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+    tInsercionDirecta = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC *1000;
 
     medidorTiempo = clock();
     insercionBinaria();
-    tInsercionBinaria = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+    tInsercionBinaria = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC *1000;
 
     medidorTiempo = clock();
     selecion();
-    tSelecion = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+    tSelecion = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC*1000;
 
     medidorTiempo = clock();
     shell();
-    tShell = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+    tShell = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC*1000;
 
-    medidorTiempo = clock();
-    quicksort();
-    tQuitsort = (clock() - medidorTiempo*1.0)/CLOCKS_PER_SEC;
+
 
 
 }
@@ -79,7 +81,6 @@ void Orden::selecion() {
             if(listaSelecion[j] < menor){
                 menor = listaSelecion[j];
                 k = j;
-
             }
 
         }
@@ -142,12 +143,9 @@ void Orden::insercionDirecta() {
             listaInsercionDirecta[k+1] = listaInsercionDirecta[k];
             k--;
 
-
         }
 
         listaInsercionDirecta[k+1] = aux;
-
-
 
     }
 
@@ -191,9 +189,7 @@ void Orden::insercionBinaria() {
 
         listaInsercionBinaria[izq] = aux;
 
-
     }
-
 
 }
 
@@ -221,11 +217,7 @@ void Orden::shell() {
                     listaShell[contador]= listaShell[contador+aux2];
                     listaShell[contador+aux2] = aux1;
                     band = true;
-
-
-
                 }
-
                 contador++;
             }
 
@@ -241,28 +233,28 @@ void Orden::quicksort() {
     int fin;
     int pos;
     int pilaMenor[max];
-    int pilaMAyor[max];
+    int pilaMayor[max];
 
     tope = 1;
     pilaMenor[tope] = 1;
-    pilaMAyor[tope] = max;
+    pilaMayor[tope] = max;
 
     while (tope > 0){
         ini = pilaMenor[tope];
-        fin = pilaMAyor[tope];
+        fin = pilaMayor[tope];
         tope--;
         auxQuicksort(ini, fin, pos);
 
         if(ini < (pos -1)){
             tope++;
             pilaMenor[tope] = ini;
-            pilaMAyor[tope] = pos -1;
+            pilaMayor[tope] = pos -1;
 
         }
         if(fin > (pos+1)){
             tope++;
             pilaMenor[tope] = pos + 1;
-            pilaMAyor[tope] = fin;
+            pilaMayor[tope] = fin;
         }
 
     }
@@ -270,16 +262,12 @@ void Orden::quicksort() {
 
 void Orden::auxQuicksort(int ini, int fin, int &pos) {
 
-    int izq;
-    int der;
+    int izq = ini;
+    int der = fin;
+    bool band = true;
     int aux;
-    bool band;
 
-
-    izq = ini;
-    der = fin;
     pos = ini;
-    band = true;
 
     while(band){
         while (listaQuicksort[pos] <= listaQuicksort[der] && pos != der){
@@ -321,18 +309,18 @@ void Orden::auxQuicksort(int ini, int fin, int &pos) {
  * Getter de las listas ordenadas
  * */
 
-int *Orden::getListaBinaria() {
+int *Orden::getListaInsercionBinaria() {
 
 
 
     return listaInsercionBinaria;
 }
 
-int *Orden::getListaDirecta() {
+int *Orden::getListaInsercionDirecta() {
     return listaInsercionDirecta;
 }
 
-int *Orden::getSeleccion() {
+int *Orden::getListaSeleccion() {
     return listaSelecion;
 }
 
@@ -344,16 +332,16 @@ int *Orden::getQuicksort() {
     return listaQuicksort;
 }
 
-int *Orden::getBorbujaMayor() {
+int *Orden::getListaBorbujaMayor() {
     return listaBorbujaMayor;
 }
 
-int *Orden::getBorbujaMenor() {
+int *Orden::getListaBorbujaMenor() {
     return listaBorbujaMenor;
 }
 
 /**
- *  Getters del tiempo de ejecucuin de los algoritmos
+ *  Getters del tiempo de ejecucion de los algoritmos
  * */
 
 double Orden::getTBorbujaMayor() {
@@ -380,8 +368,8 @@ double Orden::getTShell() {
     return tShell;
 }
 
-double Orden::getTQuitsort() {
-    return tQuitsort;
+double Orden::getTQuicksort() {
+    return tQuicksort;
 }
 
 
